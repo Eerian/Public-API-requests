@@ -26,6 +26,20 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                                     <p class="card-text cap">${employee.location.city}, ${employee.location.state}</p>
                                 </div>
                         </div>`
+            employeeGallery.innerHTML = galleryOutput;
+            //Push desired info from API into the array created at the top, put the info in an object for each employee.
+            cardInfo.push({
+                'picture': employee.picture.large,
+                'firstName': employee.name.first,
+                'lastName': employee.name.last,
+                'email': employee.email,
+                'street': employee.location.street,
+                'city': employee.location.city,
+                'state': employee.location.state,
+                'zipcode': employee.location.postcode,
+                'cell': employee.cell,
+                'dob': employee.dob.date
+            });
 
             employeeGallery.innerHTML = galleryOutput;
         });
