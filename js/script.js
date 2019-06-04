@@ -60,26 +60,26 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                         if (i === j) {
                             //create the content of the modal				
                             let modalContent = `
-                                <div class="modal">
-                                    <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                                    <div class="modal-info-container">
-                                        <img class="modal-img" src="${cardInfo[j].picture}"/125x125" alt="profile picture">
-                                        <h3 id="name" class="modal-name cap">${cardInfo[j].firstName} ${cardInfo[j].lastName}</h3>
-                                        <p class="modal-text">Email: ${cardInfo[j].email}</p>
-                                        <p class="modal-text cap">City: ${cardInfo[j].city}, ${cardInfo[j].state}</p>
-                                        <hr>
-                                        <p class="modal-text">Cell: ${cardInfo[j].cell}</p>
-                                        <p class="modal-text">Address: ${cardInfo[j].street}</p>
-                                        <p class="modal-text">${cardInfo[j].city}, ${cardInfo[j].state} ${cardInfo[j].zipcode}</p>
-                                        <p class="modal-text">Birthday: ${cardInfo[j].dob}</p>
-                                    </div>
-                                    <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-                                        <button type="button" id="modal-next" class="modal-next btn">Next</button>
-                                    <div class="modal-btn-container">
-                                        
-                                    </div>
-                                </div>
-	           	        	`;
+                    <div class="modal">
+                        <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                        <div class="modal-info-container">
+                            <img class="modal-img" src="${cardInfo[j].picture}"/125x125" alt="profile picture">
+                            <h3 id="name" class="modal-name cap">${cardInfo[j].firstName} ${cardInfo[j].lastName}</h3>
+                            <p class="modal-text">Email: ${cardInfo[j].email}</p>
+                            <p class="modal-text cap">City: ${cardInfo[j].city}, ${cardInfo[j].state}</p>
+                            <hr>
+                            <p class="modal-text">Cell: ${cardInfo[j].cell}</p>
+                            <p class="modal-text">Address: ${cardInfo[j].street}</p>
+                            <p class="modal-text">${cardInfo[j].city}, ${cardInfo[j].state} ${cardInfo[j].zipcode}</p>
+                            <p class="modal-text">Birthday: ${cardInfo[j].dob}</p>
+                        </div>
+                        <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                            <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                        <div class="modal-btn-container">
+                            
+                        </div>
+                    </div>
+                `;
                             //print the modal to it's container
                             modalContainer.innerHTML = modalContent;
                             //append the Modal container to the gallery div for display
@@ -98,18 +98,18 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                                     //update modal content to the next employee on the cardInfo array based on index.
 
                                     modalContent = `
-                        
-                                        <img class="modal-img" src="${cardInfo[j + 1].picture}"/125x125" alt="profile picture">
-                                        <h3 id="name" class="modal-name cap">${cardInfo[j + 1].firstName} ${cardInfo[j + 1].lastName}</h3>
-                                        <p class="modal-text">Email: ${cardInfo[j + 1].email}</p>
-                                        <p class="modal-text cap">City: ${cardInfo[j + 1].city}, ${cardInfo[j + 1].state}</p>
-                                        <hr>
-                                        <p class="modal-text">Cell: ${cardInfo[j + 1].cell}</p>
-                                        <p class="modal-text">Address: ${cardInfo[j + 1].street}</p>
-                                        <p class="modal-text">${cardInfo[j + 1].city}, ${cardInfo[j + 1].state} ${cardInfo[j + 1].zipcode}</p>
-                                        <p class="modal-text">Birthday: ${cardInfo[j + 1].dob}</p>
-                            
-                                     `;
+
+                                            <img class="modal-img" src="${cardInfo[j + 1].picture}"/125x125" alt="profile picture">
+                                            <h3 id="name" class="modal-name cap">${cardInfo[j + 1].firstName} ${cardInfo[j + 1].lastName}</h3>
+                                            <p class="modal-text">Email: ${cardInfo[j + 1].email}</p>
+                                            <p class="modal-text cap">City: ${cardInfo[j + 1].city}, ${cardInfo[j + 1].state}</p>
+                                            <hr>
+                                            <p class="modal-text">Cell: ${cardInfo[j + 1].cell}</p>
+                                            <p class="modal-text">Address: ${cardInfo[j + 1].street}</p>
+                                            <p class="modal-text">${cardInfo[j + 1].city}, ${cardInfo[j + 1].state} ${cardInfo[j + 1].zipcode}</p>
+                                            <p class="modal-text">Birthday: ${cardInfo[j + 1].dob}</p>
+
+                                            `;
 
                                     //print the modal to it's container
                                     modalInfoContainer.innerHTML = modalContent;
@@ -129,18 +129,18 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                                 if (e.target.innerText === 'Prev') {
                                     console.log('PREV');
                                     modalContent = `
-                        
-                                    <img class="modal-img" src="${cardInfo[j - 1].picture}"/125x125" alt="profile picture">
-                                    <h3 id="name" class="modal-name cap">${cardInfo[j - 1].firstName} ${cardInfo[j - 1].lastName}</h3>
-                                    <p class="modal-text">Email: ${cardInfo[j - 1].email}</p>
-                                    <p class="modal-text cap">City: ${cardInfo[j - 1].city}, ${cardInfo[j - 1].state}</p>
-                                    <hr>
-                                    <p class="modal-text">Cell: ${cardInfo[j - 1].cell}</p>
-                                    <p class="modal-text">Address: ${cardInfo[j - 1].street}</p>
-                                    <p class="modal-text">${cardInfo[j - 1].city}, ${cardInfo[j - 1].state} ${cardInfo[j - 1].zipcode}</p>
-                                    <p class="modal-text">Birthday: ${cardInfo[j - 1].dob}</p>
                                 
-                             `;
+                                            <img class="modal-img" src="${cardInfo[j - 1].picture}"/125x125" alt="profile picture">
+                                            <h3 id="name" class="modal-name cap">${cardInfo[j - 1].firstName} ${cardInfo[j - 1].lastName}</h3>
+                                            <p class="modal-text">Email: ${cardInfo[j - 1].email}</p>
+                                            <p class="modal-text cap">City: ${cardInfo[j - 1].city}, ${cardInfo[j - 1].state}</p>
+                                            <hr>
+                                            <p class="modal-text">Cell: ${cardInfo[j - 1].cell}</p>
+                                            <p class="modal-text">Address: ${cardInfo[j - 1].street}</p>
+                                            <p class="modal-text">${cardInfo[j - 1].city}, ${cardInfo[j - 1].state} ${cardInfo[j - 1].zipcode}</p>
+                                            <p class="modal-text">Birthday: ${cardInfo[j - 1].dob}</p>
+                        
+                                              `;
 
                                     //print the modal to it's container
                                     modalInfoContainer.innerHTML = modalContent;
@@ -159,11 +159,6 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
 
 
 
-
-
-
-
-
                         }
 
                     } //-------------End of cardInfo[] for-loop
@@ -172,16 +167,56 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
 
                 }) //-----------End of employee cards EventListener----
 
-
-
-
-
-
-
-
-
-
-
         } //-----------End of EmployeeCards For-loop
+
+
+        // -----------------CREATE THE SEARCH BAR----------------------------------------------------------------------
+
+        const searchContainer = document.querySelector('.search-container');
+        const searchInput =
+            `
+                                 <form action="#" method="get">
+                                         <input type="search" id="search-input" class="search-input" placeholder="Search...">
+                                         <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+                                 </form>
+                                  `
+        searchContainer.innerHTML = searchInput;
+        body.appendChild(searchContainer);
+
+        const searchInputField = document.querySelector('#search-input');
+        const searchSubmit = document.querySelector('#search-submit');
+
+        searchSubmit.addEventListener('click', () => {
+
+            for (let i = 0; i < cardInfo.length; i++) {
+                let name = `${cardInfo[i].firstName} ${cardInfo[i].lastName}`;
+
+                if (searchInputField.value.toUpperCase() == name.toUpperCase()) {
+                    console.log(name);
+                    galleryOutput =
+                        `<div class="card">
+                                 <div class="card-img-container">
+                                     <img class="card-img" src="${cardInfo[i].picture}" alt="profile picture">
+                                 </div>
+                                 <div class="card-info-container">
+                                     <h3 id="name" class="card-name cap">${name}</h3>
+                                     <p class="card-text">${cardInfo[i].email}</p>
+                                     <p class="card-text cap">${cardInfo[i].city}, ${cardInfo[i].state}</p>
+                                 </div>
+                             </div>
+                                     `
+                    employeeGallery.innerHTML = galleryOutput;
+
+                }
+            }
+
+
+        });
+
+
+
+
+
+
 
     }) //----End of .then(Data) fuction----
