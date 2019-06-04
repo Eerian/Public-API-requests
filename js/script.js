@@ -184,34 +184,60 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
         body.appendChild(searchContainer);
 
         const searchInputField = document.querySelector('#search-input');
-        const searchSubmit = document.querySelector('#search-submit');
+        // const searchSubmit = document.querySelector('#search-submit');
 
-        searchSubmit.addEventListener('click', () => {
+        // searchSubmit.addEventListener('click', () => {
 
-            for (let i = 0; i < cardInfo.length; i++) {
-                let name = `${cardInfo[i].firstName} ${cardInfo[i].lastName}`;
+        //     for (let i = 0; i < cardInfo.length; i++) {
+        //         let name = `${cardInfo[i].firstName} ${cardInfo[i].lastName}`;
 
-                if (searchInputField.value.toUpperCase() == name.toUpperCase()) {
-                    console.log(name);
-                    galleryOutput =
-                        `<div class="card">
-                                 <div class="card-img-container">
-                                     <img class="card-img" src="${cardInfo[i].picture}" alt="profile picture">
-                                 </div>
-                                 <div class="card-info-container">
-                                     <h3 id="name" class="card-name cap">${name}</h3>
-                                     <p class="card-text">${cardInfo[i].email}</p>
-                                     <p class="card-text cap">${cardInfo[i].city}, ${cardInfo[i].state}</p>
-                                 </div>
-                             </div>
-                                     `
-                    employeeGallery.innerHTML = galleryOutput;
+        //         if (searchInputField.value.toUpperCase() == name.toUpperCase()) {
+        //             console.log(name);
+        //             galleryOutput =
+        //                 `<div class="card">
+        //                          <div class="card-img-container">
+        //                              <img class="card-img" src="${cardInfo[i].picture}" alt="profile picture">
+        //                          </div>
+        //                          <div class="card-info-container">
+        //                              <h3 id="name" class="card-name cap">${name}</h3>
+        //                              <p class="card-text">${cardInfo[i].email}</p>
+        //                              <p class="card-text cap">${cardInfo[i].city}, ${cardInfo[i].state}</p>
+        //                          </div>
+        //                      </div>
+        //                              `
+        //             employeeGallery.innerHTML = galleryOutput;
 
+        //         }
+        //     }
+
+
+        // });
+
+        //######REAL TIME SEARCH 
+        //select all names on display
+        const allNames = document.querySelectorAll('#name');
+        let nameValue;
+        //add an event listener to the search bar
+        searchInputField.addEventListener('keyup', () => {
+            //loop thru all names
+            allNames.forEach(name => {
+                //assign the innertext to nameValue 
+                nameValue = name.innerText;
+                //check is the typed value exists in the names array by checking if it's index is bigger than -1 using indexOf.
+                if (nameValue.toLowerCase().indexOf(searchInputField.value) > -1) {
+                    //if the name exists select the parent node of the name and then the paren't parent which goes like this:
+                    //from #name div > .card-info-container div > .card div 
+                    //Then keep the div on display
+                    name.parentNode.parentNode.style.display = "";
+                } else {
+                    //other wise hide the divs that don't match.
+                    name.parentNode.parentNode.style.display = "none";
                 }
-            }
+            })
 
 
         });
+
 
 
 
