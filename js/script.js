@@ -85,6 +85,85 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                             //append the Modal container to the gallery div for display
                             body.appendChild(modalContainer);
 
+                            //Add EventListeners to all buttons 
+                            const allButtons = document.querySelectorAll('button');
+                            const modalInfoContainer = document.querySelector('.modal-info-container');
+                            allButtons.forEach(button => button.addEventListener('click', (e) => {
+
+                                if (e.target.innerText === 'X') {
+                                    body.removeChild(modalContainer);
+                                }
+
+                                if (e.target.innerText === 'Next') {
+                                    //update modal content to the next employee on the cardInfo array based on index.
+
+                                    modalContent = `
+                        
+                                        <img class="modal-img" src="${cardInfo[j + 1].picture}"/125x125" alt="profile picture">
+                                        <h3 id="name" class="modal-name cap">${cardInfo[j + 1].firstName} ${cardInfo[j + 1].lastName}</h3>
+                                        <p class="modal-text">Email: ${cardInfo[j + 1].email}</p>
+                                        <p class="modal-text cap">City: ${cardInfo[j + 1].city}, ${cardInfo[j + 1].state}</p>
+                                        <hr>
+                                        <p class="modal-text">Cell: ${cardInfo[j + 1].cell}</p>
+                                        <p class="modal-text">Address: ${cardInfo[j + 1].street}</p>
+                                        <p class="modal-text">${cardInfo[j + 1].city}, ${cardInfo[j + 1].state} ${cardInfo[j + 1].zipcode}</p>
+                                        <p class="modal-text">Birthday: ${cardInfo[j + 1].dob}</p>
+                            
+                                     `;
+
+                                    //print the modal to it's container
+                                    modalInfoContainer.innerHTML = modalContent;
+
+                                    //increment the current employee Index on the CardInfo array.
+                                    j++;
+                                    console.log(j);
+                                    //if the index (cardInfo[] is = to 11 reset it back to -1 because the next one would be (j+1) which goes back to 0 which is also cardInfo[0];
+                                    //That would display all 12 employess in a loop as long as Next button is being clicked.
+                                    if (j === 11) {
+                                        j = -1;
+                                    }
+
+
+                                }
+
+                                if (e.target.innerText === 'Prev') {
+                                    console.log('PREV');
+                                    modalContent = `
+                        
+                                    <img class="modal-img" src="${cardInfo[j - 1].picture}"/125x125" alt="profile picture">
+                                    <h3 id="name" class="modal-name cap">${cardInfo[j - 1].firstName} ${cardInfo[j - 1].lastName}</h3>
+                                    <p class="modal-text">Email: ${cardInfo[j - 1].email}</p>
+                                    <p class="modal-text cap">City: ${cardInfo[j - 1].city}, ${cardInfo[j - 1].state}</p>
+                                    <hr>
+                                    <p class="modal-text">Cell: ${cardInfo[j - 1].cell}</p>
+                                    <p class="modal-text">Address: ${cardInfo[j - 1].street}</p>
+                                    <p class="modal-text">${cardInfo[j - 1].city}, ${cardInfo[j - 1].state} ${cardInfo[j - 1].zipcode}</p>
+                                    <p class="modal-text">Birthday: ${cardInfo[j - 1].dob}</p>
+                                
+                             `;
+
+                                    //print the modal to it's container
+                                    modalInfoContainer.innerHTML = modalContent;
+                                    j--;
+                                    console.log(j);
+                                    //if the index (cardInfo[] is = to 0 reset it back to 12 because the previous one would be (j-1) which goes back to 11 which is also cardInfo[11];
+                                    //That would display all 12 employess in a loop as long as Prev button is being clicked.
+                                    if (j === 0) {
+                                        j = 12;
+                                    }
+                                }
+
+
+                            })); //--------End of button EventListeners----
+
+
+
+
+
+
+
+
+
                         }
 
                     } //-------------End of cardInfo[] for-loop
