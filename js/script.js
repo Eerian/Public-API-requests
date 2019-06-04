@@ -60,19 +60,26 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                         if (i === j) {
                             //create the content of the modal				
                             let modalContent = `
-                            <div class="modal">
-                                <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                                <div class="modal-info-container">
-                                    <img class="modal-img" src="https://placehold.it/125x125" alt="profile picture">
-                                    <h3 id="name" class="modal-name cap">name</h3>
-                                    <p class="modal-text">email</p>
-                                    <p class="modal-text cap">city</p>
-                                    <hr>
-                                    <p class="modal-text">(555) 555-5555</p>
-                                    <p class="modal-text">123 Portland Ave., Portland, OR 97204</p>
-                                    <p class="modal-text">Birthday: 10/21/2015</p>
+                                <div class="modal">
+                                    <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                                    <div class="modal-info-container">
+                                        <img class="modal-img" src="${cardInfo[j].picture}"/125x125" alt="profile picture">
+                                        <h3 id="name" class="modal-name cap">${cardInfo[j].firstName} ${cardInfo[j].lastName}</h3>
+                                        <p class="modal-text">Email: ${cardInfo[j].email}</p>
+                                        <p class="modal-text cap">City: ${cardInfo[j].city}, ${cardInfo[j].state}</p>
+                                        <hr>
+                                        <p class="modal-text">Cell: ${cardInfo[j].cell}</p>
+                                        <p class="modal-text">Address: ${cardInfo[j].street}</p>
+                                        <p class="modal-text">${cardInfo[j].city}, ${cardInfo[j].state} ${cardInfo[j].zipcode}</p>
+                                        <p class="modal-text">Birthday: ${cardInfo[j].dob}</p>
+                                    </div>
+                                    <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                                        <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                                    <div class="modal-btn-container">
+                                        
+                                    </div>
                                 </div>
-                            `;
+	           	        	`;
                             //print the modal to it's container
                             modalContainer.innerHTML = modalContent;
                             //append the Modal container to the gallery div for display
