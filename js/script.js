@@ -74,9 +74,9 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                             <p class="modal-text">Birthday: ${cardInfo[j].dob}</p>
                         </div>
                         <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-                            <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                        <button type="button" id="modal-next" class="modal-next btn">Next</button>
                         <div class="modal-btn-container">
-                            
+                           
                         </div>
                     </div>
                 `;
@@ -171,7 +171,7 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
 
 
         // -----------------CREATE THE SEARCH BAR----------------------------------------------------------------------
-
+        const headerContainer = document.querySelector('.header-inner-container');
         const searchContainer = document.querySelector('.search-container');
         const searchInput =
             `
@@ -181,7 +181,7 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                                  </form>
                                   `
         searchContainer.innerHTML = searchInput;
-        body.appendChild(searchContainer);
+        headerContainer.appendChild(searchContainer);
 
         const searchInputField = document.querySelector('#search-input');
         // const searchSubmit = document.querySelector('#search-submit');
