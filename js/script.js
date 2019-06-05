@@ -4,12 +4,10 @@ const body = document.querySelector('body');
 //Create an array to hold API data pushed to it for later use on the Modal.
 var cardInfo = [];
 
-
 //Fetch the api using given URL
 fetch('https://randomuser.me/api/?nat=us&results=12')
     .then(response => response.json())
     .then((data) => {
-        console.log(data.results);
         //Assign gallery content to null for now, will update later
         let galleryOutput = ""
             //loop thru the data fetched from api
@@ -27,7 +25,7 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                             </div>
                     </div>`
             employeeGallery.innerHTML = galleryOutput;
-            //Push desired info from API into the array created at the top, put the info in an object for each employee.
+            //Push desired info from API pulls into the array created at the top, put the info in an object for each employee.
             cardInfo.push({
                 'picture': employee.picture.large,
                 'firstName': employee.name.first,
@@ -45,7 +43,7 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
 
 
         //Select all the employee cards displayed
-        const allEmployeeCards = document.querySelectorAll('.card');
+        const allEmployeeCards = document.getElementsByClassName('card');
         //loop thru the cards and add click event listener
         for (let i = 0; i < allEmployeeCards.length; i++) {
             allEmployeeCards[i].addEventListener('click', function() {
@@ -60,41 +58,42 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                         if (i === j) {
                             //create the content of the modal				
                             let modalContent = `
-                    <div class="modal">
-                        <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-                        <div class="modal-info-container">
-                            <img class="modal-img" src="${cardInfo[j].picture}"/125x125" alt="profile picture">
-                            <h3 id="name" class="modal-name cap">${cardInfo[j].firstName} ${cardInfo[j].lastName}</h3>
-                            <p class="modal-text">Email: ${cardInfo[j].email}</p>
-                            <p class="modal-text cap">City: ${cardInfo[j].city}, ${cardInfo[j].state}</p>
-                            <hr>
-                            <p class="modal-text">Cell: ${cardInfo[j].cell}</p>
-                            <p class="modal-text">Address: ${cardInfo[j].street}</p>
-                            <p class="modal-text">${cardInfo[j].city}, ${cardInfo[j].state} ${cardInfo[j].zipcode}</p>
-                            <p class="modal-text">Birthday: ${cardInfo[j].dob}</p>
-                        </div>
-                        <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-                        <button type="button" id="modal-next" class="modal-next btn">Next</button>
-                        <div class="modal-btn-container">
-                           
-                        </div>
-                    </div>
-                `;
+                                        <div class="modal">
+                                            <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+                                            <div class="modal-info-container">
+                                                <img class="modal-img" src="${cardInfo[j].picture}"/125x125" alt="profile picture">
+                                                <h3 id="name" class="modal-name cap">${cardInfo[j].firstName} ${cardInfo[j].lastName}</h3>
+                                                <p class="modal-text">Email: ${cardInfo[j].email}</p>
+                                                <p class="modal-text cap">City: ${cardInfo[j].city}, ${cardInfo[j].state}</p>
+                                                <hr>
+                                                <p class="modal-text">Cell: ${cardInfo[j].cell}</p>
+                                                <p class="modal-text">Address: ${cardInfo[j].street}</p>
+                                                <p class="modal-text">${cardInfo[j].city}, ${cardInfo[j].state} ${cardInfo[j].zipcode}</p>
+                                                <p class="modal-text">Birthday: ${cardInfo[j].dob}</p>
+                                            </div>
+                                            
+                                            <div class="modal-btn-container">
+                                                <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                                                <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                                            </div>
+                                        </div>
+                                    `;
                             //print the modal to it's container
                             modalContainer.innerHTML = modalContent;
                             //append the Modal container to the gallery div for display
                             body.appendChild(modalContainer);
+                            console.log(j);
 
                             //Add EventListeners to all buttons 
                             const allButtons = document.querySelectorAll('button');
                             const modalInfoContainer = document.querySelector('.modal-info-container');
                             allButtons.forEach(button => button.addEventListener('click', (e) => {
-
+                                //if the button's text is X
                                 if (e.target.innerText === 'X') {
+                                    //remove the modal
                                     body.removeChild(modalContainer);
-                                }
-
-                                if (e.target.innerText === 'Next') {
+                                    //if the previous button is clicked
+                                } else if (e.target.innerText === 'NEXT') {
                                     //update modal content to the next employee on the cardInfo array based on index.
 
                                     modalContent = `
@@ -116,20 +115,17 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
 
                                     //increment the current employee Index on the CardInfo array.
                                     j++;
-                                    console.log(j);
                                     //if the index (cardInfo[] is = to 11 reset it back to -1 because the next one would be (j+1) which goes back to 0 which is also cardInfo[0];
                                     //That would display all 12 employess in a loop as long as Next button is being clicked.
                                     if (j === 11) {
                                         j = -1;
                                     }
+                                    //if the previous button is clicked
+                                } else if (e.target.innerText === 'PREV') {
 
-
-                                }
-
-                                if (e.target.innerText === 'Prev') {
-                                    console.log('PREV');
+                                    //update modal content to the previous employee on the cardInfo array based on index.
                                     modalContent = `
-                                
+
                                             <img class="modal-img" src="${cardInfo[j - 1].picture}"/125x125" alt="profile picture">
                                             <h3 id="name" class="modal-name cap">${cardInfo[j - 1].firstName} ${cardInfo[j - 1].lastName}</h3>
                                             <p class="modal-text">Email: ${cardInfo[j - 1].email}</p>
@@ -139,13 +135,12 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                                             <p class="modal-text">Address: ${cardInfo[j - 1].street}</p>
                                             <p class="modal-text">${cardInfo[j - 1].city}, ${cardInfo[j - 1].state} ${cardInfo[j - 1].zipcode}</p>
                                             <p class="modal-text">Birthday: ${cardInfo[j - 1].dob}</p>
-                        
+
                                               `;
 
                                     //print the modal to it's container
                                     modalInfoContainer.innerHTML = modalContent;
                                     j--;
-                                    console.log(j);
                                     //if the index (cardInfo[] is = to 0 reset it back to 12 because the previous one would be (j-1) which goes back to 11 which is also cardInfo[11];
                                     //That would display all 12 employess in a loop as long as Prev button is being clicked.
                                     if (j === 0) {
@@ -154,16 +149,10 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                                 }
 
 
-                            })); //--------End of button EventListeners----
-
-
-
+                            })); //--------End of all buttons EventListeners----
 
                         }
-
                     } //-------------End of cardInfo[] for-loop
-
-
 
                 }) //-----------End of employee cards EventListener----
 
@@ -175,45 +164,48 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
         const searchContainer = document.querySelector('.search-container');
         const searchInput =
             `
-                                 <form action="#" method="get">
-                                         <input type="search" id="search-input" class="search-input" placeholder="Search...">
-                                         <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
-                                 </form>
-                                  `
+                            <form action="#" method="get">
+                                    <input type="search" id="search-input" class="search-input" placeholder="Search...">
+                                    <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+                            </form>
+                        `
+            //put the search bar HTML  inside the search container
         searchContainer.innerHTML = searchInput;
+        //append th search bar inside the header container at the top of the page.
         headerContainer.appendChild(searchContainer);
 
         const searchInputField = document.querySelector('#search-input');
-        // const searchSubmit = document.querySelector('#search-submit');
+        const searchSubmit = document.querySelector('#search-submit');
 
-        // searchSubmit.addEventListener('click', () => {
+        //add an event lister to the search button
+        searchSubmit.addEventListener('click', () => {
+            //loop thru all the items in the cardInfoArray
+            for (let i = 0; i < cardInfo.length; i++) {
+                //assign name variable to the text from the full name found in the cardInfo array of objects
+                let name = `${cardInfo[i].firstName} ${cardInfo[i].lastName}`;
+                //if the search value matches a name on the cardInfo array of objects
+                if (searchInputField.value.toUpperCase() == name.toLowerCase()) {
+                    //only display that name card.
+                    galleryOutput =
+                        `<div class="card">
+                                 <div class="card-img-container">
+                                     <img class="card-img" src="${cardInfo[i].picture}" alt="profile picture">
+                                 </div>
+                                 <div class="card-info-container">
+                                     <h3 id="name" class="card-name cap">${name}</h3>
+                                     <p class="card-text">${cardInfo[i].email}</p>
+                                     <p class="card-text cap">${cardInfo[i].city}, ${cardInfo[i].state}</p>
+                                 </div>
+                             </div>
+                                     `
+                    employeeGallery.innerHTML = galleryOutput;
 
-        //     for (let i = 0; i < cardInfo.length; i++) {
-        //         let name = `${cardInfo[i].firstName} ${cardInfo[i].lastName}`;
+                }
+            }
 
-        //         if (searchInputField.value.toUpperCase() == name.toUpperCase()) {
-        //             console.log(name);
-        //             galleryOutput =
-        //                 `<div class="card">
-        //                          <div class="card-img-container">
-        //                              <img class="card-img" src="${cardInfo[i].picture}" alt="profile picture">
-        //                          </div>
-        //                          <div class="card-info-container">
-        //                              <h3 id="name" class="card-name cap">${name}</h3>
-        //                              <p class="card-text">${cardInfo[i].email}</p>
-        //                              <p class="card-text cap">${cardInfo[i].city}, ${cardInfo[i].state}</p>
-        //                          </div>
-        //                      </div>
-        //                              `
-        //             employeeGallery.innerHTML = galleryOutput;
+        });
 
-        //         }
-        //     }
-
-
-        // });
-
-        //######REAL TIME SEARCH 
+        //######REAL TIME SEARCH BAR#############################################
         //select all names on display
         const allNames = document.querySelectorAll('#name');
         let nameValue;
@@ -235,14 +227,5 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
                 }
             })
 
-
         });
-
-
-
-
-
-
-
-
-    }) //----End of .then(Data) fuction----
+    }) //---------------End of .then(Data) fuction-------------------
