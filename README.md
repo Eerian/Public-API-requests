@@ -8,6 +8,6 @@ Requests a JSON object from the API and parses the data so that 12 employees are
 # Search using lowercase
 When searching use lowercase letters.
 
-#Style changes 
+# Style changes 
 1-Background colors changed on the cards and modal to blu gradiant.
 2-Border radius on the pictures has been changed from 50% to 20%.
