@@ -54,6 +54,12 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
         searchInputField.addEventListener('keyup', function() {
             searchNames(searchInputField);
         });
+        const submitButton = document.querySelector('#search-submit');
+        submitButton.addEventListener('click', function() {
+            //stops the page refresh when clicking submit/search button
+            event.preventDefault();
+            searchNames(searchInputField);
+        })
 
     }) //End of .then method-
 
@@ -137,6 +143,11 @@ closeModal = () => {
 let index;
 //Displays the next Employee on the modal.
 displayNextEmployee = () => {
+    //if the index (cardInfo[] is = to 11 reset it back to -1 because the next one would be (+1) which goes back to 0 which is also the first card.
+    //That would display all 12 employess in a loop as long as Next button is being clicked.
+    if (index === 11) {
+        index = -1;
+    }
     const modalInfoContainer = document.querySelector('.modal-info-container');
     //update modal content to the next employee on the cardInfo array based on index.
     let nextModelContent = `
@@ -154,14 +165,15 @@ displayNextEmployee = () => {
     modalInfoContainer.innerHTML = nextModelContent;;
     //increment the index by 1.
     index++;
-    //if the index (cardInfo[] is = to 11 reset it back to -1 because the next one would be (+1) which goes back to 0 which is also the first card.
-    //That would display all 12 employess in a loop as long as Next button is being clicked.
-    if (index === 11) {
-        index = -1;
-    }
+
 }
 
 displayPreviousEmployee = () => {
+    //if the index (cardInfo[] is = to 0 reset it back to 12 because the previous one would be (-1) which goes back to 11 which is also the last card;
+    //That would display all 12 employess in a loop as long as Prev button is being clicked.
+    if (index === 0) {
+        index = 12;
+    }
     const modalInfoContainer = document.querySelector('.modal-info-container');
     //update modal content to the previous employee on the cardInfo array based on index.
     let previousModelContent = `
@@ -179,11 +191,7 @@ displayPreviousEmployee = () => {
     modalInfoContainer.innerHTML = previousModelContent;;
     //decrease the index by 1.
     index--;
-    //if the index (cardInfo[] is = to 0 reset it back to 12 because the previous one would be (-1) which goes back to 11 which is also the last card;
-    //That would display all 12 employess in a loop as long as Prev button is being clicked.
-    if (index === 0) {
-        index = 12;
-    }
+
 }
 
 
